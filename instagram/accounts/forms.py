@@ -29,7 +29,6 @@ class CustomUserCreationForm(forms.ModelForm):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data.get('password'))
         user.groups.add('user')
-
         if commit:
             user.save()
         return user
