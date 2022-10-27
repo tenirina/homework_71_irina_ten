@@ -83,6 +83,18 @@ DATABASES = {
     }
 }
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/uploads/'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'
+
+AUTH_USER_MODEL = 'accounts.Account'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -119,19 +131,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
-MEDIA_URL = '/uploads/'
-
-LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'index'
-LOGIN_URL = 'login'
-
-AUTH_USER_MODEL = 'accounts.Account'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

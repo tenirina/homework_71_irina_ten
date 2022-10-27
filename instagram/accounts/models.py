@@ -69,8 +69,8 @@ class Account(AbstractUser):
     objects = UserManager()
 
     class Meta:
-        verbose_name = 'Профиль'
-        verbose_name_plural = 'Профили'
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'
 
     def __str__(self):
         return f'{self.username} profile'
