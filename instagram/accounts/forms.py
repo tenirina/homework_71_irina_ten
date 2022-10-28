@@ -39,3 +39,4 @@ class UserChangeForm(forms.ModelForm):
         model = get_user_model()
         fields = ('first_name', 'last_name', 'email', 'avatar', 'birthday')
         labels = {'first_name': 'First name', 'last_name': 'Last name', 'email': 'Email'}
+

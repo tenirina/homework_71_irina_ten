@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.views.generic import ListView
 
 from posts.models import Post
@@ -11,4 +10,3 @@ class IndexView(LoginRequiredMixin, ListView):
     template_name = 'index.html'
     model = Post
     context_object_name = 'posts'
-
