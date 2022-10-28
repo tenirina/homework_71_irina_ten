@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+    <div class="container">
+        <p>{{ user.username }} </p>
+        {% for post in posts%}
+            <h2>description - {{ post.description }}</h2>
+            <p>Author - {{ post.author }}</p>
+            <p><a href="#">Подробнее</a></p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

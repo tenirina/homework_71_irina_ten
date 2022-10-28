@@ -96,6 +96,7 @@ LOGIN_URL = 'login'
 
 AUTH_USER_MODEL = 'accounts.Account'
 
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

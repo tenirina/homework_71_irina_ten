@@ -1,7 +1,7 @@
 from django.urls import path
 
-from posts.views import PostView
+from posts.views import IndexView
 
 urlpatterns = [
-    path('/', PostView.as_view(), name='index'),
+    path('', IndexView.as_view(), name='index'),
 ]

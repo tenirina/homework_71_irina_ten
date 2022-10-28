@@ -11,6 +11,12 @@ class GenderChoices(TextChoices):
 
 
 class Account(AbstractUser):
+    username = models.CharField(
+        unique=True,
+        verbose_name='User name',
+        max_length=100,
+        blank=True
+    )
     email = models.EmailField(
         verbose_name='Email',
         unique=True,
@@ -27,20 +33,20 @@ class Account(AbstractUser):
     birthday = models.DateField(
         null=True,
         blank=True,
-        verbose_name='Дата рождения'
+        verbose_name='Date of Birth'
     )
     liked_posts = models.ManyToManyField(
-        verbose_name='Понравившиеся публикации',
+        verbose_name='Liked posts',
         to='posts.Post',
         related_name='user_likes'
     )
     subscriptions = models.ManyToManyField(
-        verbose_name='Подписки',
+        verbose_name='Subscriptions',
         to='accounts.Account',
         related_name='subscribers'
     )
     commented_posts = models.ManyToManyField(
-        verbose_name='Прокомментированные публикации',
+        verbose_name='Commented posts',
         to='posts.Post',
         related_name='user_comments'
     )
