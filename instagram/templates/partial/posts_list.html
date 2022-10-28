@@ -4,20 +4,10 @@
 
 {% for post in posts %}
     <div class="box">
-        <h3><a href="{% url 'profile' user_obj.pk %}">{{ post.description }}</a></h3>
-<!--        <p>-->
-<!--            <label for="selected_articles-{{ article.pk }}">Select:</label>-->
-<!--            <input type="checkbox" name="selected_articles"-->
-<!--                   id="selected_articles-{{ article.pk }}" value="{{ article.pk }}">-->
-<!--        </p>-->
-<!--        <p>Статус: ({{ article.get_status_display }})</p>-->
-<!--        <p>Published at: {{ article.publish_at|date:"d.m.Y H:i:s" }}</p>-->
-<!--        {% if perms.webapp.change_article or article.author == request.user %}-->
-<!--            <p><a href="{% url 'article_update' article.pk %}">Update</a></p>-->
-<!--        {% endif %}-->
-<!--        {% if perms.webapp.delete_article or article.author == request.user %}-->
-<!--            <p><a href="{% url 'article_delete' article.pk %}">Delete</a></p>-->
-<!--        {% endif %}-->
+        <p>{{ post.description }}</p>
+        {% if user_obj.avatar %}
+            <img class="post_img" src="{{ post.image }}" width="250" height="250" alt="post picture">
+        {% endif %}
     </div>
 {% empty %}
     <h2 class="text-center">No posts</h2>

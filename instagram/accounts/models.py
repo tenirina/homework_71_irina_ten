@@ -1,3 +1,4 @@
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import TextChoices
@@ -67,6 +68,14 @@ class Account(AbstractUser):
         choices=GenderChoices.choices,
         default=GenderChoices.MALE,
         max_length=10
+    )
+    created_at = models.DateTimeField(
+        verbose_name='Date of creation',
+        auto_now_add=True,
+    )
+    updated_at = models.DateTimeField(
+        verbose_name='Date of change',
+        auto_now=True
     )
 
     USERNAME_FIELD = 'email'

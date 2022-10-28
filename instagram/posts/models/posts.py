@@ -7,3 +7,5 @@ class Post(models.Model):
     image = models.ImageField(verbose_name='Photo', null=False, blank=False, upload_to='posts')
     author = models.ForeignKey(verbose_name='Author', to=get_user_model(), related_name='posts', null=False, blank=False,
                                on_delete=models.CASCADE)
+    created_at = models.DateTimeField(verbose_name='Date of creation', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='Date of change', auto_now=True)
