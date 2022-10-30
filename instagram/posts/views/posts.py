@@ -13,7 +13,9 @@ class CreateView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('index')
-        # return reverse('post', kwargs={'pk': self.object.pk})
