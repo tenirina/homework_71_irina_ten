@@ -10,7 +10,7 @@
     <br>
     <h3>User's personal page {{ user_obj.get_full_name|default:user_obj.username }}</h3>
     {% if user_obj.avatar %}
-        <img class="avatar" src="{{ user_obj.avatar.url }}" width="250" height="250" alt="user picture">
+        <img class="avatar_img" src="{{ user_obj.avatar.url }}" alt="user picture">
     {% endif %}
     <p>User name: {{ user_obj.username }}</p>
     <p>First name: {{ user_obj.first_name }}</p>

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+      <div class="card">
+       <div class="card-body">
+           {% if user_obj.avatar %}
+                <img class="avatar_img" src="{{ post.image.url }}" alt="post picture">
+           {% endif %}
+          <h5 class="card-title" name="summary">{{ post.description }}</h5>
+       </div>
+      </div>
+</div>
+
+{% endblock %}

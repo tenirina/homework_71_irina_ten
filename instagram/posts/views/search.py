@@ -11,7 +11,7 @@ class SearchEngine(ListView):
     search_fields = {}
 
     def get_query(self):
-        query = Q(author__icontains=self.search_value)
+        query = Q(author__username__icontains=self.search_value) | Q(description__icontains=self.search_value)
         return query
 
     def get(self, request, *args, **kwargs):
@@ -43,7 +43,6 @@ class SearchEngine(ListView):
         return self.search_form(self.request.GET)
 
     def get_search_value(self):
-        print(self.form.cleaned_data['search_value'])
         if self.form.is_valid():
             return self.form.cleaned_data['search_value']
         return None
@@ -57,8 +56,8 @@ class SearchView(SearchEngine):
     paginate_by = 3
     search_form = SearchForm
     search_fields = {
-        'author': 'icontains',
-        'description': 'icontains'
+        'description': 'icontains',
+        'author__username': 'icontains'
     }
 
     def get_context_data(self, **kwargs):

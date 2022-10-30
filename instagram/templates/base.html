@@ -16,9 +16,10 @@
  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container">
         <a class="navbar-brand" href="{% url 'index' %}">Instagram</a>
-        {% include 'partial/search.html' %}
+        {% block navbar %}{% endblock %}
         {% if user.is_authenticated %}
             <spam class="navbar-nav"><a class="nav-link" href="{% url 'profile' user.pk %}">Profile</a></spam>
+            <spam class="navbar-nav"><a class="nav-link" href="{% url 'create_post' %}">Add post</a></spam>
             {% block menu %}{% endblock %}
         {% else %}
             <spam class="navbar-nav"><a class="nav-link " href="{% url 'login' %}">Sign in</a></spam>
