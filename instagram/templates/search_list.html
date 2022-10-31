@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+    {% for user in users %}
+        {% if user.avatar %}
+            <img class="avatar_img" src="{{ user.avatar.url }}" alt="user picture">
+        {% endif %}
+        <p><a href="{% url 'profile' user.pk %}">User name: {{ user.username }}</a></p>
+    {% endfor %}
+{% endblock %}

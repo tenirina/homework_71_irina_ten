@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 
@@ -28,7 +28,8 @@ class LoginView(TemplateView):
         next = form.cleaned_data.get('next')
         user = authenticate(request, email=email, password=password)
         if not user:
-            return redirect('login')
+            form.add_error(None, 'Incorrect password or email')
+            return render(request, 'login.html', {'form': form})
         login(request, user)
         if next:
             return redirect(next)

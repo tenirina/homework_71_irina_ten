@@ -1,18 +1,13 @@
-{% if is_paginated %}
-    {% include 'partial/pagination.html' %}
-{% endif %}
+
 
 {% for post in posts %}
     <div class="box">
         <p>{{ post.description }}</p>
         {% if user_obj.avatar %}
-            <img class="post_img" src="{{ post.image }}" width="250" height="250" alt="post picture">
+            <img class="post_img" src="{{ post.image.url }}" width="250" height="250" alt="post picture">
         {% endif %}
     </div>
 {% empty %}
     <h2 class="text-center">No posts</h2>
 {% endfor %}
 
-{% if is_paginated %}
-     {% include 'partial/pagination.html' %}
-{% endif %}

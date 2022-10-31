@@ -6,14 +6,24 @@
 {% endblock %}
 
 {% block content %}
-
+    <br>
     <div class="container">
         {% for post in posts%}
-            <p>Author - {{ post.author }}</p>
-            {% if user_obj.avatar %}
-                <img class="avatar_img" src="{{ post.image }}" alt="post picture">
-            {% endif %}
-            <h2>description - {{ post.description }}</h2>
+            <div class="row ">
+                <div class="col-6 align-self-center">
+                    <div class="card mb-3">
+                        <p class="card-text"><small class="text-muted"><a href="{% url 'profile' post.author.pk %}">{{ post.author }}</a></small></p>
+                        {% if post.image %}
+                            <img class="img" src="{{ post.image.url }}" alt="post picture">
+                        {% else %}
+                            <img src="..." class="card-img-top" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                            <p class="card-text">{{ post.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
     </div>
 

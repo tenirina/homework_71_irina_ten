@@ -25,16 +25,11 @@ class Account(AbstractUser):
         max_length=25
     )
     avatar = models.ImageField(
-        null=True,
+        null=False,
         blank=True,
         upload_to='avatars',
         verbose_name='Avatar',
         max_length=100
-    )
-    birthday = models.DateField(
-        null=True,
-        blank=True,
-        verbose_name='Date of Birth'
     )
     liked_posts = models.ManyToManyField(
         verbose_name='Liked posts',
@@ -77,9 +72,17 @@ class Account(AbstractUser):
         verbose_name='Date of change',
         auto_now=True
     )
+    count_subscriptions = models.IntegerField(
+        verbose_name='Count subscriptions',
+        default=0
+    )
+    count_subscribers = models.IntegerField(
+        verbose_name='Count subscribers',
+        default=0
+    )
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['username']
 
     objects = UserManager()
 
@@ -88,4 +91,4 @@ class Account(AbstractUser):
         verbose_name_plural = 'Profiles'
 
     def __str__(self):
-        return f'{self.username} profile'
+        return f'{self.username}'

@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.utils.http import urlencode
 from django.views.generic import ListView
 
+from accounts.models import Account
 from posts.forms import SearchForm
 from posts.models import Post
 
@@ -11,7 +12,7 @@ class SearchEngine(ListView):
     search_fields = {}
 
     def get_query(self):
-        query = Q(author__username__icontains=self.search_value) | Q(description__icontains=self.search_value)
+        query = Q(username__icontains=self.search_value) | Q(email__icontains=self.search_value) | Q(first_name__icontains=self.search_value)
         return query
 
     def get(self, request, *args, **kwargs):
@@ -49,18 +50,19 @@ class SearchEngine(ListView):
 
 
 class SearchView(SearchEngine):
-    template_name = 'index.html'
-    model = Post
-    context_object_name = 'posts'
+    template_name = 'search_list.html'
+    model = Account
+    context_object_name = 'users'
     ordering = ('updated_at')
     paginate_by = 3
     search_form = SearchForm
     search_fields = {
-        'description': 'icontains',
-        'author__username': 'icontains'
+        'email': 'icontains',
+        'username': 'icontains',
+        'first_name': 'icontains'
     }
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update({'posts': Post.objects.filter(self.get_query())})
+        context.update({'accounts': Account.objects.filter(self.get_query())})
         return context

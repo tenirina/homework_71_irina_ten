@@ -15,9 +15,11 @@
     <p>User name: {{ user_obj.username }}</p>
     <p>First name: {{ user_obj.first_name }}</p>
     <p>Last name: {{ user_obj.last_name }}</p>
-    <p>Date of Birth: {{ user_obj.profile.birth_date|date:'d.m.Y' }}</p>
     <p>Email: {{ user_obj.email }}</p>
-
+     <form action="{% url 'subscribe' user_obj.pk %}" method="post">
+        <br>
+        <input type="submit" class="btn btn-secondary" value="Subscribe">
+    </form>
     <h3 class="text-center clear">Posts:</h3>
     {% include 'partial/posts_list.html' %}
 {% endblock %}

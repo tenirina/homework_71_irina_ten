@@ -8,5 +8,6 @@ class IndexView(LoginRequiredMixin, ListView):
     login_url = 'accounts/login/'
     redirect_field_name = 'redirect_to'
     template_name = 'index.html'
+    ordering = ('-created_at',)
     model = Post
     context_object_name = 'posts'
