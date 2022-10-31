@@ -2,24 +2,35 @@
 
 {% block title %} Profile {% endblock %}
 
-{% block menu %}
-    <spam class="navbar-nav"><a class="nav-link" href="{% url 'change' user_obj.pk %}">Update</a></spam>
-{% endblock %}
-
 {% block content %}
     <br>
-    <h3>User's personal page {{ user_obj.get_full_name|default:user_obj.username }}</h3>
-    {% if user_obj.avatar %}
-        <img class="avatar_img" src="{{ user_obj.avatar.url }}" alt="user picture">
-    {% endif %}
-    <p>User name: {{ user_obj.username }}</p>
-    <p>First name: {{ user_obj.first_name }}</p>
-    <p>Last name: {{ user_obj.last_name }}</p>
-    <p>Email: {{ user_obj.email }}</p>
-     <form action="{% url 'subscribe' user_obj.pk %}" method="post">
-        <br>
-        <input type="submit" class="btn btn-secondary" value="Subscribe">
-    </form>
+    <h3>User's personal page </h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                {% if user_obj.avatar %}
+                    <img class="avatar_img" src="{{ user_obj.avatar.url }}" alt="user picture">
+                {% endif %}
+            </div>
+            <div class="col-7">
+                <div class="row">
+                    <form action="{% url 'subscribe' user_obj.pk %}" method="post">
+                         {% csrf_token %}
+                        <span>{{ user_obj.username }}</span>
+                        <input type="submit" class="btn btn-secondary" value="Subscribe">
+                    </form>
+                </div>
+                <div class="row">
+                    <p class="col"> Posts: {{user_obj.posts.count}}</p>
+                    <p class="col"> Subscriptions: {{user_obj.count_subscriptions}}</p>
+                    <p class="col"> Subscribers: {{user_obj.count_subscribers}}</p>
+                </div>
+                <p>User name: {{ user_obj.username }}</p>
+                <p>First name: {{ user_obj.first_name }}</p>
+                <p>Description: {{ user_obj.description }}</p>
+            </div>
+        </div>
+    </div>
     <h3 class="text-center clear">Posts:</h3>
     {% include 'partial/posts_list.html' %}
 {% endblock %}

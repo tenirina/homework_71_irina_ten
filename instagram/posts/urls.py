@@ -1,7 +1,7 @@
 from django.urls import path
 
 from posts.views.base import IndexView
-from posts.views.posts import CreateView
+from posts.views.posts import CreateView, SubscribeView
 from posts.views.search import SearchView
 
 urlpatterns = [

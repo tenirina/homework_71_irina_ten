@@ -17,7 +17,7 @@ class SearchForm(forms.Form):
 
 class PostForm(forms.ModelForm):
     description = forms.CharField(required=False, label='Description', max_length=150, widget=widgets.Textarea,)
-    image = forms.ImageField(required=False)
+    image = forms.ImageField(required=True)
 
     class Meta:
         model = Post

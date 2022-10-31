@@ -2,10 +2,6 @@
 
 {% block title %} Update profile {% endblock %}
 
-{% block menu %}
-    <spam class="navbar-nav"><a class="nav-link" href="{% url 'profile' user_obj.pk %}">Back</a></spam>
-{% endblock %}
-
 {% block content %}
     <h3>Change personal data</h3>
     <form action="{% url 'change' user_obj.pk %}" method="post" enctype="multipart/form-data">
