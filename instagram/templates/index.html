@@ -6,12 +6,12 @@
     <br>
     <div class="container">
         {% for post in posts%}
-            <div class="row ">
-                <div class="col-6 align-self-center">
+            <div class="row justify-content-md-center">
+                <div class="col-8">
                     <div class="card mb-3">
                         <p class="card-text"><small class="text-muted"><a href="{% url 'profile' post.author.pk %}">{{ post.author }}</a></small></p>
                         {% if post.image %}
-                            <img class="img" src="{{ post.image.url }}" alt="post picture">
+                            <a href="{% url 'post' post.pk %}"><img class="card-img-top" src="{{ post.image.url }}" alt="post picture"></a>
                         {% else %}
                             <img src="..." class="card-img-top" alt="...">
                         {% endif %}
@@ -25,7 +25,7 @@
                             <button class="btn btn-secondary" type="submit">Comment</button>
                         </form>
                         <div class="comment-list">
-                            {% for comment in post.comments.all %}
+                            {% for comment in post.comments.all|dictsortreversed:"created_at" %}
                                 <div class="comment">
                                     <div class="pre">{{ comment.text }}</div>
                                     <p>{{ comment.author }} commented at {{ comment.created_at|date:'d.m.Y H:i:s' }}</p>

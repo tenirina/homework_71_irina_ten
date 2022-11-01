@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, DetailView
 
 from accounts.models import Account
 from posts.forms import PostForm
 from posts.models import Post
 
 
-class CreateView(LoginRequiredMixin, CreateView):
+class CreatePostView(LoginRequiredMixin, CreateView):
     template_name = 'posts/create.html'
     form_class = PostForm
     model = Post
@@ -22,6 +22,14 @@ class CreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('index')
+
+
+class PostView(DetailView):
+    template_name = "posts/post.html"
+    model = Post
+    fields = ('image', 'description',)
+
+
 
 
 class SubscribeView(View):

@@ -12,10 +12,8 @@ class CreateCommentView(LoginRequiredMixin, CreateView):
     model = Comment
 
     def post(self, request, *args, **kwargs):
-        print("dfsd")
         post = get_object_or_404(Post, pk=self.kwargs.get('pk'))
         form = self.get_form_class()(request.POST)
-        print(form.data.get('comment'))
         comment = form.data.get('comment')
         user = request.user
         Comment.objects.create(author=user, text=comment, post=post)

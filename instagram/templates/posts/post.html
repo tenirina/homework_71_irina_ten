@@ -2,15 +2,38 @@
 {% block content %}
 
 <div class="container">
-
-      <div class="card">
-       <div class="card-body">
-           {% if user_obj.avatar %}
-                <img class="avatar_img" src="{{ post.image.url }}" alt="post picture">
-           {% endif %}
-          <h5 class="card-title" name="summary">{{ post.description }}</h5>
-       </div>
-      </div>
+    <div class="row justify-content-md-center">
+        <div class="col-8">
+            <div class="card mb-3">
+                <br>
+                <p class="card-text"><small class="text-muted"><a href="{% url 'profile' post.author.pk %}">{{ post.author }}</a></small></p>
+                {% if post.image %}
+                    <img class="card-img-top" src="{{ post.image.url }}" alt="post picture">
+                {% else %}
+                    <img src="..." class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                    <a href="{% url 'like' post.pk %}"><i class="bi bi-heart"></i></a>
+                    <p class="card-text">{{ post.description }}</p>
+                </div>
+                 <form class="d-flex" action="{% url 'create_comment' post.pk %}" method="post">
+                     {%  csrf_token %}
+                    <input name="comment" class="form-control me-2" type="text" placeholder="Comment">
+                    <button class="btn btn-secondary" type="submit">Comment</button>
+                </form>
+                <div class="comment-list">
+                    {% for comment in post.comments.all|dictsort:"created_at" %}
+                        <div class="comment">
+                            <div class="pre">{{ comment.text }}</div>
+                            <p>{{ comment.author }} commented at {{ comment.created_at|date:'d.m.Y H:i:s' }}</p>
+                        </div>
+                    {% empty %}
+                        <p>No comments yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
