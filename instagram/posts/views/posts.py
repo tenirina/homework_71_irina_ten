@@ -30,8 +30,6 @@ class PostView(DetailView):
     fields = ('image', 'description',)
 
 
-
-
 class SubscribeView(View):
 
     def post(self, request, *args, **kwargs):

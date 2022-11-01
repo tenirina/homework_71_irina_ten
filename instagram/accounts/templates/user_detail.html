@@ -14,11 +14,13 @@
             </div>
             <div class="col-7">
                 <div class="row">
+                    {% if perms.webapp.change_account or user_obj == request.user %}
                     <form action="{% url 'subscribe' user_obj.pk %}" method="post">
                          {% csrf_token %}
                         <span>{{ user_obj.username }}</span>
                         <input type="submit" class="btn btn-secondary" value="Subscribe">
                     </form>
+                    {% endif %}
                 </div>
                 <div class="row">
                     <p class="col"> Posts: {{user_obj.posts.count}}</p>

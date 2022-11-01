@@ -15,8 +15,10 @@ class IndexView(LoginRequiredMixin, ListView):
         context = super().get_context_data(object_list=object_list, **kwargs)
         user = self.request.user
         authors = list(user.subscriptions.all())
-        print(authors)
-        posts = Post.objects.filter(author__in=authors)
+        if len(authors):
+            posts = Post.objects.filter(author__in=authors)
+        else:
+            posts = Post.objects.all()
         context['posts'] = posts
         return context
 
