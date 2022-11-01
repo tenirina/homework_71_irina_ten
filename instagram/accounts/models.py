@@ -25,11 +25,10 @@ class Account(AbstractUser):
         max_length=25
     )
     avatar = models.ImageField(
-        null=False,
-        blank=True,
+        null=True,
+        blank=False,
         upload_to='avatars',
         verbose_name='Avatar',
-        max_length=100
     )
     liked_posts = models.ManyToManyField(
         verbose_name='Liked posts',

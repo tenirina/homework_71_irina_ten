@@ -29,8 +29,14 @@
                 <p>First name: {{ user_obj.first_name }}</p>
                 <p>Description: {{ user_obj.description }}</p>
             </div>
+            <form action="{% url 'change' user_obj.pk %}" method="post" enctype="multipart/form-data">
+                 {% csrf_token %}
+                <input type="submit" class="btn btn-secondary" value="Change">
+            </form>
         </div>
+
+        <h3 class="text-center clear">Posts:</h3>
+        {% include 'partial/posts_list.html' %}
     </div>
-    <h3 class="text-center clear">Posts:</h3>
-    {% include 'partial/posts_list.html' %}
+
 {% endblock %}
