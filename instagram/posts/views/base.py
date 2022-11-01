@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 
+from posts.forms import CommentForm
 from posts.models import Post
 
 
@@ -11,3 +12,5 @@ class IndexView(LoginRequiredMixin, ListView):
     ordering = ('-created_at',)
     model = Post
     context_object_name = 'posts'
+
+

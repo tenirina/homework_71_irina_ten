@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import widgets
 
-from posts.models import Post
+from posts.models import Post, Comment
 
 
 class SearchForm(forms.Form):
@@ -22,4 +22,12 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('image', 'description',)
+
+
+class CommentForm(forms.ModelForm):
+    text = forms.CharField(required=False, label='Comment', max_length=150, widget=widgets.Textarea, )
+
+    class Meta:
+        model = Comment
+        fields = ('author', 'text', 'post',)
 

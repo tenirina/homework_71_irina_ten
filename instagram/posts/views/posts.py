@@ -18,7 +18,6 @@ class CreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -44,16 +43,8 @@ class LikeView(View):
     def get(self, request, *args, **kwargs):
         user = request.user
         post = get_object_or_404(Post, pk=kwargs.get('pk'))
-        print(f"user sjjsjs  {user.liked_posts}")
-        print(f"post skkskks {post.user_likes}")
         if not post.user_likes.filter(username=user).exists():
             user.liked_posts.add(post)
             post.count_like += 1
             post.save()
-            print('hfhf')
         return redirect('index')
-
-
-
-
-
