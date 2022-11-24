@@ -82,7 +82,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
 
 class UserChangeView(PermissionRequiredMixin, UpdateView):
-    model = get_user_model()
+    model = Account
     form_class = UserChangeForm
     template_name = 'user_change.html'
     context_object_name = 'user_obj'

@@ -36,8 +36,11 @@ class CustomUserCreationForm(forms.ModelForm):
 
 
 class UserChangeForm(forms.ModelForm):
+    avatar = forms.ImageField(required=True)
+    email = forms.CharField(required=True)
+
     class Meta:
         model = get_user_model()
-        fields = ('first_name', 'last_name', 'email', 'avatar')
-        labels = {'first_name': 'First name', 'last_name': 'Last name', 'email': 'Email'}
+        fields = ('first_name', 'last_name', 'email', 'phone', 'avatar', 'description')
+        labels = {'first_name': 'First name', 'last_name': 'Last name', 'email': 'Email', 'avatar': 'Avatar', 'description': 'Description'}
 

@@ -31,7 +31,7 @@
                 <p>First name: {{ user_obj.first_name }}</p>
                 <p>Description: {{ user_obj.description }}</p>
             </div>
-            <form action="{% url 'change' user_obj.pk %}" method="post" enctype="multipart/form-data">
+            <form action="{% url 'change' user_obj.pk %}" method="get" enctype="multipart/form-data">
                  {% csrf_token %}
                 <input type="submit" class="btn btn-secondary" value="Change">
             </form>
