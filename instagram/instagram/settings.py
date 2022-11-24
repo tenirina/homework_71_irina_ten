@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'accounts',
     'posts',
     'django_bootstrap5',
+    'api',
+    'rest_framework',
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -71,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'instagram.wsgi.application'
+
 
 
 # Database
