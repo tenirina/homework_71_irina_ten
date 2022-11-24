@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 
 from accounts.forms import LoginForm, CustomUserCreationForm, UserChangeForm
+from accounts.models import Account
 
 
 class LoginView(TemplateView):
@@ -28,8 +29,12 @@ class LoginView(TemplateView):
         next = form.cleaned_data.get('next')
         user = authenticate(request, email=email, password=password)
         if not user:
-            form.add_error(None, 'Incorrect password or email')
-            return render(request, 'login.html', {'form': form})
+            user = Account.objects.filter(username=email)
+            if not user:
+                form.add_error(None, 'Incorrect password or email')
+                return render(request, 'login.html', {'form': form})
+            user = authenticate(request, username=user[0].email, password=password)
+            print(user)
         login(request, user)
         if next:
             return redirect(next)

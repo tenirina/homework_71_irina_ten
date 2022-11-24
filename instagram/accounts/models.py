@@ -16,24 +16,26 @@ class Account(AbstractUser):
         unique=True,
         verbose_name='User name',
         max_length=100,
-        blank=True
+        blank=True,
+        null=False,
     )
     email = models.EmailField(
         verbose_name='Email',
         unique=True,
         blank=True,
-        max_length=25
+        max_length=25,
+        null=False,
     )
     avatar = models.ImageField(
-        null=True,
         blank=False,
         upload_to='avatars',
         verbose_name='Avatar',
+        null=False,
     )
     liked_posts = models.ManyToManyField(
         verbose_name='Liked posts',
         to='posts.Post',
-        related_name='user_likes'
+        related_name='user_likes',
     )
     subscriptions = models.ManyToManyField(
         verbose_name='Subscriptions',
@@ -61,7 +63,8 @@ class Account(AbstractUser):
         verbose_name='Gender',
         choices=GenderChoices.choices,
         default=GenderChoices.MALE,
-        max_length=10
+        max_length=10,
+        null=True,
     )
     created_at = models.DateTimeField(
         verbose_name='Date of creation',

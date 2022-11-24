@@ -13,7 +13,8 @@ class CustomUserCreationForm(forms.ModelForm):
     password = forms.CharField(label='Password', strip=False, required=True, widget=forms.PasswordInput)
     password_confirm = forms.CharField(label='Confirm password', strip=False, required=True,
                                        widget=forms.PasswordInput)
-    avatar = forms.ImageField(required=False, label='Image')
+    avatar = forms.ImageField(required=True, label='Image')
+    username = forms.CharField(required=True)
 
     class Meta:
         model = get_user_model()
