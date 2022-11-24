@@ -41,6 +41,12 @@ class SubscribeView(View):
             sub_user.save()
             user.count_subscribers += 1
             user.save()
+        elif sub_user.subscriptions.filter(username=user):
+            sub_user.subscriptions.remove(user)
+            sub_user.count_subscriptions -= 1
+            sub_user.save()
+            user.count_subscribers -= 1
+            user.save()
         return redirect('profile', pk=kwargs.get('pk'))
 
 
@@ -52,5 +58,9 @@ class LikeView(View):
         if not post.user_likes.filter(username=user).exists():
             user.liked_posts.add(post)
             post.count_like += 1
+            post.save()
+        elif post.user_likes.filter(username=user):
+            user.liked_posts.remove(post)
+            post.count_like -= 1
             post.save()
         return redirect('index')
