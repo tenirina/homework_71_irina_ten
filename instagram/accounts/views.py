@@ -34,7 +34,6 @@ class LoginView(TemplateView):
                 form.add_error(None, 'Incorrect password or email')
                 return render(request, 'login.html', {'form': form})
             user = authenticate(request, username=user[0].email, password=password)
-            print(user)
         login(request, user)
         if next:
             return redirect(next)

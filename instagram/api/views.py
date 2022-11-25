@@ -22,9 +22,7 @@ class PostViewSet(ModelViewSet):
     def create_likes(self, request, *args, **kwargs):
         user = request.user
         post = get_object_or_404(Post, pk=kwargs.get('pk'))
-        print(post)
         if not post.user_likes.filter(username=user).exists():
-            print(post)
             user.liked_posts.add(post)
             post.count_like += 1
             post.save()
