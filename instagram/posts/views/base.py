@@ -20,8 +20,5 @@ class IndexView(LoginRequiredMixin, ListView):
         else:
             posts = Post.objects.all()
         context['posts'] = posts
+
         return context
-
-
-
-

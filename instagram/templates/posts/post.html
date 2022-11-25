@@ -10,10 +10,13 @@
                 {% if post.image %}
                     <img class="card-img-top" src="{{ post.image.url }}" alt="post picture">
                 {% else %}
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="http://dummyimage.com/150" class="card-img-top" alt="...">
                 {% endif %}
                 <div class="card-body">
-                    <a href="{% url 'like' post.pk %}"><i class="bi bi-heart"></i></a>
+                    <p>{{post.user_likes}}</p>
+                    <a href="{% url 'like' post.pk %}">
+                      {% values post.user_likes flat=True as post_users %}
+                        <i class="{% if user.pk not in post_users %} bi-heart-fill {% else %} bi-heart {% endif %} bi like-btn"></i></a>
                     <p class="card-text">{{ post.description }}</p>
                 </div>
                  <form class="d-flex" action="{% url 'create_comment' post.pk %}" method="post">

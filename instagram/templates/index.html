@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+    {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 
 
@@ -16,7 +16,7 @@
                             <img src="..." class="card-img-top" alt="...">
                         {% endif %}
                         <div class="card-body">
-                            <a href="{% url 'like' post.pk %}"><i class="bi bi-heart"></i></a>
+                            <a href="{% url 'like' post.pk %}"><i class="like-btn bi {% if user in post.user_likes.all %} bi-heart-fill {{post.pk}} {% else %} bi-heart {{post.pk}} {% endif %}" data-post-id="{{post.pk}}"></i></a>
                             <p class="card-text">{{ post.description }}</p>
                         </div>
                          <form class="d-flex" action="{% url 'create_comment' post.pk %}" method="post">
@@ -39,5 +39,4 @@
             </div>
         {% endfor %}
     </div>
-
 {% endblock %}
